@@ -30,5 +30,9 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
-
+    'unicode' => [
+        'client_id' => env('UNICODE_CLIENT_ID'),
+        'client_secret' => env('UNICODE_CLIENT_SECRET'),
+        'callback_url' => env('UNICODE_CALLBACK_URL'),
+    ]
 ];

@@ -24,8 +24,8 @@ Route::get('unicode/redirect', function (Request $request){
     $request->session()->put('state', $state = Str::random(40));
 
     $query = http_build_query([
-        'client_id' => '1',
-        'redirect_uri' => 'http://myweb.dev:8001/unicode/callback',
+        'client_id' => config('services.unicode.client_id'),
+        'redirect_uri' => url(config('services.unicode.callback_url')),
         'response_type' => 'code',
         'scope' => '',
         'state' => $state,
@@ -43,9 +43,9 @@ Route::get('unicode/callback', function(Request $request){
 
         $response = Http::asForm()->post('http://unicode.dev:8000/oauth/token', [
             'grant_type' => 'authorization_code',
-            'client_id' => '1',
-            'client_secret' => '3UFWpQpAyTzQLyANaTMG6mrOEgEYKesP3RYe3NUf',
-            'redirect_uri' => 'http://myweb.dev:8001/unicode/callback',
+            'client_id' => config('services.unicode.client_id'),
+            'client_secret' => config('services.unicode.client_secret'),
+            'redirect_uri' => url(config('services.unicode.callback_url')),
             'code' => $code,
         ]);
      
